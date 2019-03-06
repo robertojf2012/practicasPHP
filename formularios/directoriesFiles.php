@@ -1,28 +1,30 @@
+<?php
+	require 'functions.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Login</title>
+		<title>Directories and Files</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	</head>
 	<body>
-		<br>
-		<h2 align="center">Login</h2>
-		<br>
 		<div class="container" align="center">
-			<form id="formLogin" method="post" action="broker.php">
-				<input autofocus="autofocus" class="form-control" required="required" type="email" placeholder="Email" name="email">
-				<br>
-				<input class="form-control" required="required" type="password" placeholder="Contraseña" name="password">
-				<input class="form-control" type="hidden" name="route" value="<?=$_SERVER["REQUEST_URI"]?>">
-				<br>
-				<button class="btn btn-primary btn-lg" type="submit">Login</button>
-			</form>
-			<br>
-			<a href="index.php"><button class="btn btn-outline-success btn-lg">Index</button></a>
-		</div>
+			<?php
+				
+				//createDirectory('hola');
+        $file = "test.txt";
+        $contentFile = "mucho texto de pruebaaa";
+        
+        var_dump(writeFilee($file,'prueba','TEXTOO DE PRUEBA LALALA'));
 
+        var_dump(readFilee($file,'prueba'));
+       		
+        //var_dump(deleteFilee($file, 'prueba'));
+        
+        ?>
+		</div>
 	</body>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
