@@ -1,4 +1,6 @@
 <?php
+	
+	require_once 'functions.php'; 
 
 	//VARIABLES DE REGISTRO
 	$nombre = '';
@@ -10,6 +12,7 @@
 	$password = '';
 
 	$message = '';
+	$pagina = '';
 
 	if(isset($_REQUEST['route'])) {
 
@@ -24,80 +27,87 @@
 				case "/php/formularios/crearUsuario.php":
 
 					if(isset($_REQUEST['nombre'])){
-						$nombre = htmlentities($_REQUEST['nombre'], ENT_QUOTES, "UTF-8");
+						$nombre = sanitizar($_REQUEST['nombre']);
 					}else{
 						$nombre = '';
 					}
 
 					if(isset($_REQUEST['materno'])){
-						$materno = htmlentities($_REQUEST['materno'], ENT_QUOTES, "UTF-8");
+						 $materno = sanitizar($_REQUEST['materno']);
 					}else{
 						$materno = '';
 					}
 
 					if(isset($_REQUEST['paterno'])){
-						$paterno = htmlentities($_REQUEST['paterno'], ENT_QUOTES, "UTF-8");
+						$paterno = sanitizar($_REQUEST['paterno']);
 					}else{
 						$paterno = '';
 					}
 
 					if(isset($_REQUEST['curp'])){
-						$curp = htmlentities($_REQUEST['curp'], ENT_QUOTES, "UTF-8");
+						$curp = sanitizar($_REQUEST['curp']);
 					}else{
 						$curp = '';
 					}
 
 					if(isset($_REQUEST['email'])){
-						$email = htmlentities($_REQUEST['email'], ENT_QUOTES, "UTF-8");
+						$email = sanitizar($_REQUEST['email']);
 					}else{
 						$email = '';
 					}
 
 					if(isset($_REQUEST['telefono'])){
-						$telefono = htmlentities($_REQUEST['telefono'], ENT_QUOTES, "UTF-8");
+						$telefono = sanitizar($_REQUEST['telefono']);
 					}else{
 						$telefono = '';
 					}
 
 					if(isset($_REQUEST['pass2'])){
-						$password = htmlentities($_REQUEST['pass2'], ENT_QUOTES, "UTF-8");
+						$password = sanitizar($_REQUEST['pass2']);
 					}else{
 						$password = '';
 					}
 
 					$message = 'Usuario Registrado con exito';
+					$pagina = 'message.php';
 				break;
 
 				case "/php/formularios/login.php":
 
 					if(isset($_REQUEST['email'])){
-						$email = htmlentities($_REQUEST['email'], ENT_QUOTES, "UTF-8");
+						$email = sanitizar($_REQUEST['email']);
 					}else{
 						$email = '';
 					}
 
 					if(isset($_REQUEST['password'])){
-						$password = htmlentities($_REQUEST['password'], ENT_QUOTES, "UTF-8");
+						$password = sanitizar($_REQUEST['password']);
 					}else{
 						$password = '';
 					}
 
-					if($email == 'robert@a.com' && $password == '123'){
+					if(login($email,$password)){
 						$message = 'Login exitoso';
+						crearSesion($email,$password);
+						createDirectory('prueba');
 					}else{
 						$message = 'Error de login';
+						cerrarSesion();
 					}
+					$pagina = 'message.php';
 				break;
+
+				case '/php/formularios/message.php?msg=Login%20exitoso':
+					$pagina = 'login.php';
+					cerrarSesion();
+					break;
 				
 				default:
 					echo "No autorizado";
 					break;
 			}
 		}
-
-		header("Location: message.php?msg=$message");
-		exit();
-
+		navegar($pagina,$message);
 	}
 
 ?>

@@ -11,13 +11,19 @@
 	<h2 align="center">Inicio</h2>
 	<br>
 	<div class="container" align="center">
-			<a href="login.php"><button type="button" class="btn btn-primary btn-lg">Login</button></a>
+		<a href="login.php"><button type="button" class="btn btn-primary btn-lg">Login</button></a>
 	</div>
 	
 	<br>
 
 	<div class="container" align="center">
-			<a href="crearUsuario.php"><button type="button" class="btn btn-warning btn-lg">Registro</button></a>
+		<a href="crearUsuario.php"><button type="button" class="btn btn-warning btn-lg">Registro</button></a>
+	</div>
+	
+	<br>
+	
+	<div class="container" align="center">
+		<a href="directoriesFiles.php"><button type="button" class="btn btn-danger btn-lg">Carpetas y archivos</button></a>
 	</div>
 </body>
 
